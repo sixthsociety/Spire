@@ -14,7 +14,7 @@ public class AimController : MonoBehaviour {
     public bool IsAiming;
 
     //public WepController weapon;
-    public Gun gun;
+    //public Gun gun;
 
     private Vector3 moveDirection;
     private Vector3 camForward;

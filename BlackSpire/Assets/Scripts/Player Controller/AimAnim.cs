@@ -7,80 +7,24 @@ public class AimAnim : MonoBehaviour {
     //Variables
     public Transform ActiveWep, PassiveWep, CurrentWeapon, InactiveWep, lightHolder;
     public StateController sController;
-    private WeaponManager weaponManager;
     public bool objectClass;
-   
+    public PlayerWeapon equippedWeapon;
 
     //Methods
     void Start () {
         sController = GetComponentInParent<StateController>();
-        weaponManager = GetComponentInParent<WeaponManager>();
+        equippedWeapon = GetComponent<PlayerWeapon>();
 
-        ActiveWep = GameObject.FindGameObjectWithTag("ActiveW").transform ;
-        PassiveWep = GameObject.FindGameObjectWithTag("PassiveW").transform;
-        InactiveWep = GameObject.FindGameObjectWithTag("Inactive Holder").transform;
-        lightHolder = GameObject.FindGameObjectWithTag("LightHolder").transform;
+        ActiveWep = GameObject.Find("ActiveWeapon").transform ;
+        PassiveWep = GameObject.Find("PassiveWeapon").transform;
+        InactiveWep = GameObject.Find("InActive Holder").transform;
+        lightHolder = GameObject.Find("InActive Holder 2").transform;
         CurrentWeapon = gameObject.transform;
         
     }
 
-    private void Update()
+    void weaponPlacement()
     {
-        
+        //if (equippedWeapon.Equip)
     }
-
-    void FixedUpdate () {
-        WeaponSwap();
-    }
-
-
-    void WeaponSwap()
-    {
-        if (objectClass == true)
-        {
-            ActiveWeapon();
-        }
-        else if (objectClass == false)
-        {
-            InactiveWeapon();
-        }
-        return;
-    }
-
-    void ActiveWeapon()
-    {
-        if (sController.IsAiming == true)
-        {
-            CurrentWeapon.transform.position = ActiveWep.transform.position;
-            CurrentWeapon.transform.rotation = ActiveWep.transform.rotation;
-        }
-
-
-        if (sController.IsAiming == false)
-        {
-            CurrentWeapon.transform.position = PassiveWep.transform.position;
-            CurrentWeapon.transform.rotation = PassiveWep.transform.rotation;
-        }
-    }
-
-    void InactiveWeapon()
-    {
-        if (objectClass = weaponManager.mediumWeapon)
-        {
-            CurrentWeapon.transform.position = InactiveWep.transform.position;
-            CurrentWeapon.transform.rotation = InactiveWep.transform.rotation;
-        }
-        if (objectClass = weaponManager.heavyWeapon)
-        {
-            CurrentWeapon.transform.position = InactiveWep.transform.position;
-            CurrentWeapon.transform.rotation = InactiveWep.transform.rotation;
-        }
-        if (objectClass = weaponManager.lightWeapon)
-        {
-            CurrentWeapon.transform.position = lightHolder.transform.position;
-            CurrentWeapon.transform.rotation = lightHolder.transform.rotation;
-        }
-    }
-
-
 }
