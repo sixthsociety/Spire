@@ -89,7 +89,7 @@ public class BotManager : MonoBehaviour {
 			if (attackTimer <= 0f){
 
 				Debug.Log("Attacking the Target");
-				target.GetComponent<EnemyHealth>().health--;
+				//target.GetComponent<EnemyHealth>().health--;
 				attackTimer = maxAttackTimer;
 			}
 		}
