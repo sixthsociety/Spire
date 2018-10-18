@@ -15,6 +15,7 @@ TagManager:
   - PassiveW
   - LightHolder
   - Tower
+  - Pick Up
   layers:
   - Default
   - TransparentFX
