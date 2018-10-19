@@ -54,4 +54,23 @@ public class Player : MonoBehaviour {
             health -= damage;
         }
     }
+
+    [SerializeField] private Weapon toCall;
+    void WeaponRequest () 
+    {
+        //call ui manager
+
+        //get input from the manager as to which gun to use
+
+        Debug.Log("Calling new weapon...");
+        //Get the gamemanager to drop a new weapon box in the base
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.C) && inBase)
+        {
+            WeaponRequest();
+        }
+    }
 }

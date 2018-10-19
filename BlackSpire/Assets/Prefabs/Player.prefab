@@ -513,7 +513,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4301239966952630}
-  - component: {fileID: 114263034987409856}
+  - component: {fileID: 114356755820476418}
   m_Layer: 0
   m_Name: Assault Rifle
   m_TagString: Untagged
@@ -1356,24 +1356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
---- !u!114 &114263034987409856
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1757434077109254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5828fa73d19eb4a9c9c7d84a2b6f02c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gunName: 
-  clipSize: 100
-  fireRate: 0.1
-  reloadDelay: 1
-  damage: 10
-  range: 20
-  firePoint: {fileID: 4220220506562888}
+  toCall: {fileID: 0}
 --- !u!114 &114306879205564758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1394,6 +1377,24 @@ MonoBehaviour:
   firePoint: {fileID: 4407380585880094}
   bullet: {fileID: 114266582947365684, guid: 0c80e12e2f9ff4687beb8c809a5e5517, type: 2}
   barrelExplosion: {fileID: 0}
+--- !u!114 &114356755820476418
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1757434077109254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67d8ff8a050604b879097bd5301e7d72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunName: 
+  clipSize: 100
+  fireRate: 0.1
+  reloadDelay: 1
+  damage: 10
+  range: 20
+  firePoint: {fileID: 0}
 --- !u!114 &114453103373075130
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1439,7 +1440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lWeapon: {fileID: 114591025581322294}
-  mWeapon: {fileID: 114263034987409856}
+  mWeapon: {fileID: 114356755820476418}
   hWeapon: {fileID: 114306879205564758}
 --- !u!136 &136563188935422732
 CapsuleCollider:
