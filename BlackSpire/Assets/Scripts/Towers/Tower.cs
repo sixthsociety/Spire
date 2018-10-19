@@ -16,7 +16,7 @@ public class Tower : MonoBehaviour {
         {
             Player justEntered = col.GetComponent<Player>();
             playersInBase.Add(justEntered);
-
+            justEntered.SetBase(true);
 
             if (doesHeal)
             {
@@ -31,6 +31,7 @@ public class Tower : MonoBehaviour {
         {
             Player justExited = col.GetComponent<Player>();
             playersInBase.Remove(justExited);
+            justExited.SetBase(false);
 
             if (playersInBase.Count == 0) 
             {

@@ -7,11 +7,11 @@ public class Inventory : MonoBehaviour
 {
     private const int SLOTS = 9;
 
-    private List<IInventoryItem> mItems = new List<IInventoryItem>();
+    private List<InventoryItem> mItems = new List<InventoryItem>();
 
     public event EventHandler<InventoryItemsArgs> ItemAdded;
 
-    public void AddItem(IInventoryItem item)
+    public void AddItem(InventoryItem item)
     {
         if (mItems.Count < SLOTS)
         {

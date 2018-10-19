@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponInventoryController : MonoBehaviour , IInventoryItem {
+public class WeaponInventoryController : MonoBehaviour , InventoryItem {
 
     public string Name
     {

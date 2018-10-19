@@ -51,7 +51,6 @@ public class Player : MonoBehaviour {
         }
         else
         {
-<<<<<<< HEAD
             health -= damage;
         }
     }
@@ -75,9 +74,3 @@ public class Player : MonoBehaviour {
         }
     }
 }
-=======
-            health -= damage;
-        }
-    }
-}
->>>>>>> 9e3fae69f95042eeb8f64a59a7cb4b96adde2453
