@@ -10,7 +10,6 @@ public class InGameMenu : MonoBehaviour {
     private void Update() {
         if (!menu.gameObject.activeSelf && Input.GetKeyDown(KeyCode.Escape)) {
             menu.gameObject.SetActive(true);
-            Debug.Log(menu.gameObject.activeSelf);
         }
         else if(menu.gameObject.activeSelf && Input.GetKeyDown(KeyCode.Escape)) {
             menu.gameObject.SetActive(false);
