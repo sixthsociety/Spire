@@ -11,7 +11,7 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] private HeavyWeapon hWeapon; // heavy weapon attached to the player
 
     private Weapon currentWeapon; // the active weapon
-    private bool isAiming;
+    private bool isAiming = true;
 
     private void Start()
     {

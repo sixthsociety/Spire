@@ -7,6 +7,8 @@ public class Weapon : MonoBehaviour{
     protected enum AmmoType { LIGHT = 0, MEDIUM = 1, HEAVY = 3 };
     protected AmmoType ammoType;
 
+    protected enum Rarity { COMMON = 0, UNCOMMON = 1, RARE = 2, ULTRA_RARE = 3, LEGENDARY = 4 };
+
     [SerializeField] protected string gunName; //name to be displayed in UI
 
     [SerializeField] protected int clipSize = 100; //total ammo gun can hold
