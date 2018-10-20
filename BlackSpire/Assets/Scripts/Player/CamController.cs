@@ -6,7 +6,7 @@ public class CamController : MonoBehaviour {
 
     // Variables
     public GameObject target;
-    public Transform pivot;
+    public GameObject pivot;
     public float smooth = 0.3f;
     private float desiredYAngle;
     private float desiredXAngle;
@@ -22,10 +22,11 @@ public class CamController : MonoBehaviour {
     private void Start()
     {
         target = GameObject.Find("Player");
+        pivot = GameObject.Find("Pivot");
         offset = target.transform.position - transform.position;
 
         pivot.transform.position = target.transform.position;
-        pivot.transform.parent = target.transform;
+        //pivot.parent = target;
         pivot.transform.parent = null;
     }
 
@@ -34,8 +35,8 @@ public class CamController : MonoBehaviour {
     {
         pivot.transform.position = target.transform.position;
         //Pivot Rotation
-        desiredYAngle = pivot.eulerAngles.y;
-        desiredXAngle = pivot.eulerAngles.x;
+        desiredYAngle = pivot.transform.eulerAngles.y;
+        desiredXAngle = pivot.transform.eulerAngles.x;
 
         Vector3 pos = new Vector3();
         pos.x = target.transform.position.x;
