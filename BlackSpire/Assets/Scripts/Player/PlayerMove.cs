@@ -6,9 +6,9 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour {
 
     private float playerSpeed; // speed of player movement
-    [SerializeField] float playerMoveSpeed = 0.08f;
-    [SerializeField] float playerAimMoveSpeed = 0.04f;
-
+    [SerializeField] float playerMoveSpeed = 20f;
+    [SerializeField] float playerAimMoveSpeed = 20f;
+    [SerializeField] float rotationSpeed = 10f;
     new Rigidbody rigidbody;
     [SerializeField] Camera mainCam;
 
@@ -27,10 +27,16 @@ public class PlayerMove : MonoBehaviour {
         float rot = Input.GetAxisRaw("Horizontal");
         float move = Input.GetAxisRaw("Vertical");
 
-        Vector3 movement = new Vector3(rot, 0f, move).normalized;
+        Vector3 moveDir = (transform.forward * move) + (transform.right * rot);
+        moveDir.y = moveDir.y + (Physics.gravity.y * Time.deltaTime);
 
-        transform.LookAt(transform.position + movement);
-        rigidbody.MovePosition(rigidbody.position + movement * playerSpeed);
+        rigidbody.velocity = (moveDir * playerMoveSpeed).normalized;
+
+        if (move != 0 || rot != 0)
+        {
+            Quaternion newRotation = Quaternion.LookRotation(new Vector3(moveDir.x, 0f, moveDir.z));
+            transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
+        }
     }
 
     // responsible for calculating the way the player should be looking
