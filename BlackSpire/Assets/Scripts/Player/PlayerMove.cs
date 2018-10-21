@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMove : MonoBehaviour {
 
+    Animator animator;
+
     private float playerSpeed; // speed of player movement
     [SerializeField] float playerMoveSpeed = 0.08f;
     [SerializeField] float playerAimMoveSpeed = 0.04f;
@@ -14,51 +16,71 @@ public class PlayerMove : MonoBehaviour {
 
     [HideInInspector] public bool canMove = true;
 
+    private Vector3 inputDirection;
+    private Vector3 inputWorldPosition;
     private bool isAiming;
+    private Quaternion lookRotation = Quaternion.identity;
 
     private void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
         playerSpeed = playerMoveSpeed;
+
+        animator = this.GetComponentInChildren<Animator>();
     }
 
-    void Move () 
+    private void Update()
     {
-        float rot = Input.GetAxisRaw("Horizontal");
-        float move = Input.GetAxisRaw("Vertical");
+        float inputX = Input.GetAxisRaw("Horizontal");
+        float inputY = Input.GetAxisRaw("Vertical");
+        inputDirection = new Vector3(inputX, 0f, inputY).normalized;
 
-        Vector3 movement = new Vector3(rot, 0f, move).normalized;
+        isAiming = Input.GetMouseButton(1);
 
-        transform.LookAt(transform.position + movement);
-        rigidbody.MovePosition(rigidbody.position + movement * playerSpeed);
-    }
-
-    // responsible for calculating the way the player should be looking
-    public void Aiming()
-    {
-        isAiming = true;
-        // shoot a ray from cam through the mouse to the ground
-        Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
-        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
-        float rayDistance;
-
-        if (groundPlane.Raycast(ray, out rayDistance))
+        // responsible for calculating the way the player should be looking
+        if (isAiming)
         {
-            Vector3 point = ray.GetPoint(rayDistance);
+            // shoot a ray from cam through the mouse to the ground
+            Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
+            Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+            float rayDistance;
 
-            // Look at point
-            Vector3 heightCorrectedPoint = new Vector3(point.x, transform.position.y, point.z);
-            transform.LookAt(heightCorrectedPoint);
+            if (groundPlane.Raycast(ray, out rayDistance))
+            {
+                inputWorldPosition = ray.GetPoint(rayDistance);
+            }
         }
     }
 
     private void FixedUpdate()
     {
-        Move();
-
-        if (Input.GetMouseButton(1))
+        if (isAiming)
         {
-            Aiming();
+            Look(inputWorldPosition - transform.position);
+            Move(inputDirection);
         }
+        else
+        {
+            Look(inputDirection);
+            Move(inputDirection);
+        }
+    }
+
+    void Move(Vector3 direction)
+    {
+        //Animation
+        Vector3 localDirection = Quaternion.Inverse(lookRotation) * direction;
+        animator.SetFloat("MoveX", localDirection.x);
+        animator.SetFloat("MoveY", localDirection.z);
+
+        rigidbody.MovePosition(rigidbody.position + direction * playerSpeed);
+    }
+
+    void Look(Vector3 direction)
+    {
+        if (direction.sqrMagnitude < Mathf.Epsilon) return;
+        direction.y = 0f;
+        lookRotation = Quaternion.LookRotation(direction, Vector3.up);
+        transform.rotation = lookRotation;
     }
 }
