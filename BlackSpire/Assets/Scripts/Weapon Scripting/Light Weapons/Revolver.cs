@@ -6,7 +6,7 @@ public class Revolver : LightWeapon {
 
     private void Start()
     {
-        currentAmmo = clipSize;
+        loadedAmmo = clipSize;
     }
 
     public override void DoShoot()

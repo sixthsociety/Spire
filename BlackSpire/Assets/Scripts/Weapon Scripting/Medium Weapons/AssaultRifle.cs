@@ -6,7 +6,7 @@ public class AssaultRifle : MediumWeapon {
 
     private void Start()
     {
-        currentAmmo = clipSize;
+        loadedAmmo = clipSize;
     }
 
     public override void DoShoot()

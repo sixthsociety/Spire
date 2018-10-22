@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerMove))]
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour
+{
+    [SerializeField, HideInInspector] private int level = 1;
+    [SerializeField, HideInInspector] private int exp;
+
+    [SerializeField, HideInInspector] private int totalKills;
 
     PlayerMove playerMove;
     PlayerWeapon playerWeapon;
@@ -19,6 +24,21 @@ public class Player : MonoBehaviour {
         playerWeapon = GetComponentInChildren<PlayerWeapon>();
 
         health = maxHealth;
+    }
+
+    public PlayerWeapon GetPlayerWeapon () 
+    {
+        return playerWeapon;
+    }
+
+    public int GetLevel () 
+    {
+        return level;
+    }
+
+    public int GetExp () 
+    {
+        return exp;
     }
 
     public void SetBase (bool _inBase) 
@@ -64,6 +84,17 @@ public class Player : MonoBehaviour {
 
         Debug.Log("Calling new weapon...");
         //Get the gamemanager to drop a new weapon box in the base
+    }
+
+    public void Save () 
+    {
+        SaveLoadManager.SavePlayer(this);
+        Debug.Log("Player Data Saved");
+    }
+
+    public void Load () 
+    {
+
     }
 
     private void Update()

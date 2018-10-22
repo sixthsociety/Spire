@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -66,6 +67,26 @@ public class PlayerWeapon : MonoBehaviour
     void Reload () 
     {
         currentWeapon.ReloadTrigger();
+    }
+
+    public void PickUpAmmo (int _ammoAmount, int _ammoType) 
+    {
+        Debug.Log(_ammoType);
+
+        if (_ammoType == 0)
+        {
+            lWeapon.AddAmmo(_ammoAmount);
+        }
+
+        if (_ammoType == 1)
+        {
+            mWeapon.AddAmmo(_ammoAmount);
+        }
+
+        if (_ammoType == 2)
+        {
+            hWeapon.AddAmmo(_ammoAmount);
+        }
     }
 
     private void Update()

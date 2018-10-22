@@ -8,7 +8,7 @@ public class RocketLauncher : HeavyWeapon {
 
     private void Start()
     {
-        currentAmmo = clipSize;
+        loadedAmmo = clipSize;
     }
 
     public override void DoShoot()

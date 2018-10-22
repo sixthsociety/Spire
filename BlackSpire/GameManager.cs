@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(LootManager))]
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance = null; 
-    
-    private LootManager lootManager;                                                     
-
+                                                      
     void Awake()
     {
         //Check if instance already exists
@@ -26,7 +23,5 @@ public class GameManager : MonoBehaviour {
 
         //Sets this to not be destroyed when reloading scene
         DontDestroyOnLoad(gameObject);
-
-        lootManager = GetComponent<LootManager>();
     }
 }

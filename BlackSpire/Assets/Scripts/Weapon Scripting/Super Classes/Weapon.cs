@@ -12,7 +12,8 @@ public class Weapon : MonoBehaviour{
     [SerializeField] protected string gunName; //name to be displayed in UI
 
     [SerializeField] protected int clipSize = 100; //total ammo gun can hold
-    protected int currentAmmo; //current ammo left in clip
+    protected int totalAmmo;
+    protected int loadedAmmo; //current ammo left in clip
 
     [SerializeField] protected float fireRate = 0.1f; //time between shots (seconds)
     [SerializeField] protected float reloadDelay = 1f; // time it takes to reload (seconds)
@@ -31,7 +32,7 @@ public class Weapon : MonoBehaviour{
 
     private void Start()
     {
-        currentAmmo = clipSize;
+        loadedAmmo = clipSize;
     }
 
     public string GetName () 
@@ -41,7 +42,7 @@ public class Weapon : MonoBehaviour{
 
     public int GetCurrentAmmo () 
     {
-        return currentAmmo;
+        return loadedAmmo;
     }
 
     public int GetClipSize () 
@@ -63,13 +64,13 @@ public class Weapon : MonoBehaviour{
     //Called by playerWeapon method in order to shoot gun
     public void ShootTrigger () 
     {
-        if (canShoot && currentAmmo > 0)
+        if (canShoot && loadedAmmo > 0)
         {
             StartCoroutine(ShootTime());
         }
-        else if (currentAmmo <= 0 && isReloading == false)
+        else if (loadedAmmo <= 0 && isReloading == false)
         {
-            ReloadTrigger();
+            Debug.Log("You need to RELOAD!");
         }
     }
 
@@ -84,7 +85,7 @@ public class Weapon : MonoBehaviour{
 
     public virtual void DoShoot () 
     {
-        currentAmmo--;
+        loadedAmmo--;
     }
 
     public void ReloadTrigger()
@@ -106,6 +107,20 @@ public class Weapon : MonoBehaviour{
     public virtual void DoReload () 
     {
         //TODO : add an if check to see if the player has enough ammo to reload
-        currentAmmo = clipSize;
+        if (totalAmmo > clipSize)
+        {
+            loadedAmmo = clipSize;
+            totalAmmo -= clipSize;
+        } else 
+        {
+            loadedAmmo = totalAmmo;
+            totalAmmo = 0;
+        }
+    }
+
+    public void AddAmmo (int _amount)
+    {
+        totalAmmo += _amount;
+        Debug.Log("Added ammo to " + gameObject.name + " weapon");
     }
 }
