@@ -16,6 +16,8 @@ public class PlayerMove : MonoBehaviour {
 
     [HideInInspector] public bool canMove = true;
 
+    private PlayerWeapon playerWeapon;
+
     private Vector3 inputDirection;
     private Vector3 inputWorldPosition;
     private bool isAiming;
@@ -27,6 +29,8 @@ public class PlayerMove : MonoBehaviour {
         playerSpeed = playerMoveSpeed;
 
         animator = this.GetComponentInChildren<Animator>();
+
+        playerWeapon = GetComponentInChildren<PlayerWeapon>();
     }
 
     private void Update()
@@ -35,7 +39,7 @@ public class PlayerMove : MonoBehaviour {
         float inputY = Input.GetAxisRaw("Vertical");
         inputDirection = new Vector3(inputX, 0f, inputY).normalized;
 
-        isAiming = Input.GetMouseButton(1);
+        isAiming = playerWeapon.GetAim();
 
         // responsible for calculating the way the player should be looking
         if (isAiming)

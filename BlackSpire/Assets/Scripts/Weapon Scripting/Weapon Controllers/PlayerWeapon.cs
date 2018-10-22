@@ -12,7 +12,7 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] private HeavyWeapon hWeapon; // heavy weapon attached to the player
 
     private Weapon currentWeapon; // the active weapon
-    private bool isAiming = true;
+    private bool isAiming;
 
     private void Start()
     {
@@ -22,11 +22,6 @@ public class PlayerWeapon : MonoBehaviour
 
         defaultWeapon = mWeapon;
         EquipWeapon(defaultWeapon);
-    }
-
-    public void SetAim (bool _isAiming) 
-    {
-        isAiming = _isAiming;
     }
 
     void EquipWeapon (Weapon toEquip) 
@@ -89,6 +84,11 @@ public class PlayerWeapon : MonoBehaviour
         }
     }
 
+    public bool GetAim () 
+    {
+        return isAiming;
+    }
+
     private void Update()
     {
         if (Input.GetButton("Fire1") || Input.GetAxisRaw("LTrigger")  > 0)
@@ -105,5 +105,13 @@ public class PlayerWeapon : MonoBehaviour
         {
             SwitchWeapon();
         }
+        if(Input.GetMouseButton(1))
+        {
+            isAiming = true;
+        } else 
+        {
+            isAiming = false;
+        }
+
     }
 }
