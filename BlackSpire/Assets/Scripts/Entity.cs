@@ -5,15 +5,15 @@ using UnityEngine;
 // all entities derive from this class
 public class Entity : MonoBehaviour {
 
-    [SerializeField] private int maxHealth = 100;
-    private int health;
+    [SerializeField] protected int maxHealth = 100;
+    protected int health;
 
     private void Start()
     {
         health = maxHealth;
     }
 
-    void Die()
+    public virtual void Die()
     {
         Debug.Log(gameObject.name + " died...");
     }

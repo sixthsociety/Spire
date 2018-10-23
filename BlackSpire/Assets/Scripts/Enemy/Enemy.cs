@@ -2,8 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour {
+public class Enemy : Entity {
 
-    public void TakeDamage(int damage) 
-    {}
+    [SerializeField] protected new int maxHealth;
+
+    private void Start()
+    {
+        health = maxHealth;
+    }
+    
 }

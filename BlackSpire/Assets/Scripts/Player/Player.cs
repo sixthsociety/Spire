@@ -19,6 +19,8 @@ public class Player : Entity {
     {
         playerMove = GetComponent<PlayerMove>();
         playerWeapon = GetComponentInChildren<PlayerWeapon>();
+
+        health = maxHealth;
     }
 
     public PlayerWeapon GetPlayerWeapon () 
