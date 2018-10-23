@@ -5,7 +5,7 @@ using UnityEngine;
 // all entities derive from this class
 public class Entity : MonoBehaviour {
 
-    [SerializeField] public int maxHealth = 100;
+    [SerializeField] private int maxHealth = 100;
     private int health;
 
     private void Start()
