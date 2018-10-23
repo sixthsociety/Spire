@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerMove))]
-public class Player : MonoBehaviour
-{
+public class Player : Entity {
+
     [SerializeField, HideInInspector] private int level = 1;
     [SerializeField, HideInInspector] private int exp;
 
@@ -15,15 +15,10 @@ public class Player : MonoBehaviour
 
     private bool inBase;
 
-    private int health;
-    [SerializeField] private int maxHealth = 100;
-
     void Start () 
     {
         playerMove = GetComponent<PlayerMove>();
         playerWeapon = GetComponentInChildren<PlayerWeapon>();
-
-        health = maxHealth;
     }
 
     public PlayerWeapon GetPlayerWeapon () 
@@ -44,35 +39,6 @@ public class Player : MonoBehaviour
     public void SetBase (bool _inBase) 
     {
         inBase = _inBase;
-    }
-
-    void Die () 
-    {
-        Debug.Log("YOu died...");
-    }
-
-    public void Heal (int heal) 
-    {
-        if (health <= maxHealth - heal)
-        {
-            health += heal;
-            Debug.Log("Healed the player " + heal + " health");
-        } else 
-        {
-            health = maxHealth;
-        }
-    }
-
-    public void TakeDamage(int damage)
-    {
-        if (health - damage <= 0)
-        {
-            Die();
-        }
-        else
-        {
-            health -= damage;
-        }
     }
 
     [SerializeField] private Weapon toCall;
