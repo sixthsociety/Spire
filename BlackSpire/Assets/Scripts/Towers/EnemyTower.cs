@@ -12,7 +12,7 @@ public class EnemyTower : MonoBehaviour {
     [SerializeField] private int damage = 3;
     [SerializeField] private float attackRate = 1f; // seconds
 
-    private List<Player> playersInRange = new List<Player>();
+    private List<HealthBehaviour> playersInRange = new List<HealthBehaviour>();
 
     private void Start()
     {
@@ -25,7 +25,7 @@ public class EnemyTower : MonoBehaviour {
     {
         if (col.tag == "Player")
         {
-            Player justEntered = col.GetComponent<Player>();
+            HealthBehaviour justEntered = col.GetComponent<HealthBehaviour>();
             playersInRange.Add(justEntered);
 
             if (playersInRange.Count == 1) 
@@ -39,7 +39,7 @@ public class EnemyTower : MonoBehaviour {
     {
         if (col.tag == "Player")
         {
-            Player justExited = col.GetComponent<Player>();
+            HealthBehaviour justExited = col.GetComponent<HealthBehaviour>();
             playersInRange.Remove(justExited);
 
             if (playersInRange.Count == 0) 

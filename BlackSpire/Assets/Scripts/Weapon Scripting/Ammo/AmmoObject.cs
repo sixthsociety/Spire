@@ -26,9 +26,9 @@ public class AmmoObject : MonoBehaviour {
     {
         if (col.tag == "Player")
         {
-            PlayerWeapon playerWeapon = col.GetComponent<Player>().GetPlayerWeapon();
+            //PlayerWeapon playerWeapon = col.GetComponent<>().GetPlayerWeapon();
 
-            playerWeapon.PickUpAmmo(ammoAmount, (int) ammoType);
+           //playerWeapon.PickUpAmmo(ammoAmount, (int) ammoType);
             Destroy(gameObject);
         }
     }

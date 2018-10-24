@@ -8,15 +8,14 @@ public class Tower : MonoBehaviour {
     [SerializeField] private bool doesHeal;
     [SerializeField] private float healRate = .3f;
 
-    private List<Player> playersInBase = new List<Player>();
+    private List<HealthBehaviour> playersInBase = new List<HealthBehaviour>();
 
     private void OnTriggerEnter(Collider col)
     {
         if (col.tag == "Player")
         {
-            Player justEntered = col.GetComponent<Player>();
+            HealthBehaviour justEntered = col.GetComponent<HealthBehaviour>();
             playersInBase.Add(justEntered);
-            justEntered.SetBase(true);
 
             if (doesHeal)
             {
@@ -29,9 +28,8 @@ public class Tower : MonoBehaviour {
     {
         if (col.tag == "Player")
         {
-            Player justExited = col.GetComponent<Player>();
+            HealthBehaviour justExited = col.GetComponent<HealthBehaviour>();
             playersInBase.Remove(justExited);
-            justExited.SetBase(false);
 
             if (playersInBase.Count == 0) 
             {

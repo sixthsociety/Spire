@@ -28,7 +28,7 @@ public class Shotgun : MediumWeapon {
                 if (hit.collider.GetComponent<Enemy>())
                 {
                     Debug.DrawRay(firePoint.position, direction);
-                    hit.collider.GetComponent<Enemy>().TakeDamage(damage);
+
                 }
             }
         }
