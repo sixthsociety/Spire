@@ -6,13 +6,21 @@ using UnityEngine;
 
 public class CombatBehaviour : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    AttackStats stats;
+
+    public struct AttackStats
+    {
+        public int baseDamage;
+        public float attackTime;
+    }
+
+	void OnEnable () {
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
+
+	public void SetAttack (int baseDamage, float attackTime) {
+        stats.baseDamage = baseDamage;
+        stats.attackTime = attackTime;
 	}
 }

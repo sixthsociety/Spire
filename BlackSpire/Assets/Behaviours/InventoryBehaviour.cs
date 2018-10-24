@@ -6,17 +6,12 @@ using UnityEngine;
 
 public class InventoryBehaviour : MonoBehaviour {
 
-    [SerializeField] InventoryItemData[] inventorySlots;
+    public enum WeaponType {Debug, LightWeapon, MediumWeapon, HeavyWeapon, Grenade }
 
-    // List<InventoryItemData> resizableInventorySlots = new List<InventoryItemData>();
+    [SerializeField] WeaponType activeWeapon = WeaponType.LightWeapon;
 
-    // Note : inventory is the storage of items in data form (no GameObject)
-    // When an item is put into the inventory, it becomes data
-    // To place an item in toe level it gets Spawned
-    //
-    // When an item is picked up, it either is disabled(if pooled for example) or destroyed.
-    // Inventory should therefor not keep a referance to the GameObject
-    // Ask an item if it can be picked up, if it can, tell it to give you it's data, and tell it to handle it's pickup logic
+    [SerializeField] bool m_LogInEditor = false; 
+    public CombatBehaviour combat;
 
     // Weapon's note (gameplay) :
     // Heavy weapons require you to stand in position and shoot(rocket launchers, mortars, miniguns etc)
@@ -28,25 +23,45 @@ public class InventoryBehaviour : MonoBehaviour {
     // --- UNITY UPDATES ---
 
     void OnEnable () {
-        
+        SetWeapon(activeWeapon);
     }
 
     // --- PUBLIC ---
 
-    public void Update () {
-		
-	}
+    // Note : Currently implemented for player only
+    public void SetWeapon(WeaponType type)
+    {
+        if (combat == null) throw new System.Exception("Missing CombatBehaviour");
+
+        activeWeapon = type;
+
+        switch (type)
+        {
+            case WeaponType.LightWeapon:
+                combat.SetAttack(2, 0.05f);
+                if (m_LogInEditor) Debug.Log("Weapon was set : LightWeapon");
+                break;
+
+            case WeaponType.MediumWeapon:
+                combat.SetAttack(20, 0.2f);
+                if (m_LogInEditor) Debug.Log("Weapon was set : MediumWeapon");
+                break;
+
+            case WeaponType.HeavyWeapon:
+                combat.SetAttack(50, 1f);
+                if (m_LogInEditor) Debug.Log("Weapon was set : HeavyWeapon");
+                break;
+
+            case WeaponType.Grenade:
+                combat.SetAttack(100,2f);
+                if (m_LogInEditor) Debug.Log("Weapon was set : Grenade");
+                break;
+
+            case WeaponType.Debug: throw new System.Exception("Bad weapon, don't do this");
+        }
+    }
 
     // --- PRIVATE ---
 
-}
 
-public class InventoryItemData
-{
-    public string editorName;
-    public int indexInInventory;
-    public GameObject prefab;
-    public int count = 1;
-    public int maxCount = 1;
-    // There needs to be enough data in here to spawn it
 }
