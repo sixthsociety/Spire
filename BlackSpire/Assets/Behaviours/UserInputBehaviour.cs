@@ -5,12 +5,16 @@ using UnityEngine;
 // mouse, keyboard, GUI, Men
 
 public class UserInputBehaviour : MonoBehaviour {
+    public InventoryBehaviour inventory;
+    public CombatBehaviour combat;
+    public MovementBehaviour movement;
 
     public Camera inputCamera { get; set; }
 
     public Vector3 inputDirection { get; private set; }
     public Vector3 inputWorldPosition { get; private set; }
     public bool isAiming { get; private set; }
+    public bool isShooting { get; private set; }
 
     // UNITY UPDATE CALLS
 
@@ -30,6 +34,8 @@ public class UserInputBehaviour : MonoBehaviour {
         {
             UpdateWorldPosition();
         }
+
+        isShooting = Input.GetMouseButton(0);
     }
 
     // PUBLIC ACCESS
