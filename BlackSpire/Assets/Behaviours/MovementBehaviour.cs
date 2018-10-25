@@ -6,14 +6,20 @@ using UnityEngine;
 
 public class MovementBehaviour : MonoBehaviour {
 
-    [SerializeField] float m_DefaultSpeed = 1f;
-        
+    //[SerializeField]
+    // WILL SERIALIZE LATER
+    float m_DefaultSpeed = 5f;
+    float maxRotateSpeed = 1000f;
+
     public float speed { get; set; }
-    private Vector3 lookDirection { get; set; }
-    private Vector3 lookPoint { get; set; }
-    private bool isAiming { get; set; }
+
+    public Vector3 moveDirection { get; private set; }
+    public Vector3 lookDirection { get; private set; }
+    public Vector3 lookPoint { get; private set; }
+    public bool isAiming { get; private set; }
 
     public Quaternion lookRotation { get; private set; }
+    public Vector3 tagrgetLookDirection { get; private set; }
 
     new private Rigidbody rigidbody;
     
@@ -23,6 +29,8 @@ public class MovementBehaviour : MonoBehaviour {
     {
         InitializeRigidbody();
 
+        speed = m_DefaultSpeed;
+
         lookRotation = Quaternion.identity;
     }
 
@@ -30,27 +38,40 @@ public class MovementBehaviour : MonoBehaviour {
     {
         if (isAiming)
         {
-            Look(lookPoint - transform.position);
-            Move(lookDirection);
+            Look(lookPoint - transform.position, Time.fixedDeltaTime);
+            Move(moveDirection, Time.fixedDeltaTime);
         }
         else
         {
-            Look(lookDirection);
-            Move(lookDirection);
+            Look(lookDirection, Time.fixedDeltaTime);
+            Move(moveDirection, Time.fixedDeltaTime);
         }
     }
 
     // PUBLIC ACCESS
 
-    public void SetLookPoint() { throw new System.Exception("unimplemented, set lookPosition instead"); }
+    public void SetLookPoint(Vector3 point)
+    {
+        isAiming = true;
+        lookPoint = point;
+    }
 
-    public void SetLookDirection() { throw new System.Exception("unimplemented, set lookDirection instead"); }
+    public void SetLookDirection(Vector3 direction)
+    {
+        isAiming = false;
+        lookDirection = direction;
+    }
+
+    public void SetMoveDirection(Vector3 direction)
+    {
+        moveDirection = direction;
+    }
 
     // PRIVATE
 
-    void Move(Vector3 direction)
+    void Move(Vector3 direction, float deltaTime)
     {
-        rigidbody.MovePosition(rigidbody.position + direction * speed);
+        rigidbody.MovePosition(rigidbody.position + direction * deltaTime * speed);
         /*
         //Animation
         Vector3 localDirection = Quaternion.Inverse(lookRotation) * direction;
@@ -59,11 +80,16 @@ public class MovementBehaviour : MonoBehaviour {
         */
     }
 
-    void Look(Vector3 direction)
+    void Look(Vector3 direction, float deltaTime)
     {
-        if (direction.sqrMagnitude < Mathf.Epsilon) return;
-        direction.y = 0f;
-        lookRotation = Quaternion.LookRotation(direction, Vector3.up);
+        if (direction.sqrMagnitude > Mathf.Epsilon)
+        {
+            direction.y = 0f;
+            tagrgetLookDirection = direction;
+        }
+
+        Quaternion targetLookRotation = Quaternion.LookRotation(tagrgetLookDirection, Vector3.up);
+        lookRotation = Quaternion.RotateTowards(lookRotation, targetLookRotation, maxRotateSpeed * deltaTime);
         transform.rotation = lookRotation;
     }
 
