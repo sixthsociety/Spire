@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class InventoryBehaviour : MonoBehaviour {
 
+
     public enum WeaponType {Debug, LightWeapon, MediumWeapon, HeavyWeapon, Grenade }
 
     [SerializeField] WeaponType activeWeapon = WeaponType.LightWeapon;
@@ -14,7 +15,14 @@ public class InventoryBehaviour : MonoBehaviour {
     [SerializeField] bool m_LogInEditor = false; 
     public CombatBehaviour combat;
 
+    // Sugestion : store in array with an accessor that uses WeaponType as index
+    [System.Serializable] public struct AmmoValue{ public int count, clipCount, clipSize, maxClips; public int total {get{ return count + (clipCount * clipSize); } } }
+    public AmmoValue lightAmmo, mediumAmmo, heavyAmmo, grenadeAmmo;
+
+    // sugestion : call all events EventEventName instead of onEventName
+    // To do : make weapon switching non-instant (EventWeaponStartChange, EventWeaponChanged)
     public event System.Action onWeaponChange;
+    public event System.Action onAmmoValueChange;
 
     // --- UNITY UPDATES ---
 
@@ -30,7 +38,32 @@ public class InventoryBehaviour : MonoBehaviour {
 
     // --- PUBLIC ---
 
+    public void AddAmmoClips(int clipCount)
+    {
+        switch (activeWeapon)
+        {
+            case WeaponType.LightWeapon: lightAmmo.clipCount += clipCount; break;
+            case WeaponType.MediumWeapon: mediumAmmo.clipCount += clipCount; break;
+            case WeaponType.HeavyWeapon: heavyAmmo.clipCount += clipCount; break;
+            case WeaponType.Grenade: grenadeAmmo.clipCount += clipCount; break;
+            default: throw new System.Exception("Invalid ammo type");
+        }
+    }
+
+    public AmmoValue GetAmmoValue()
+    {
+        switch (activeWeapon)
+        {
+            case WeaponType.LightWeapon: return lightAmmo;
+            case WeaponType.MediumWeapon: return mediumAmmo;
+            case WeaponType.HeavyWeapon: return heavyAmmo;
+            case WeaponType.Grenade: return grenadeAmmo;
+            default:throw new System.Exception("Invalid ammo type");
+        }
+    }
+
     // Note : Currently implemented for player only
+    // To change : combat behaviour per weapon instead of one for all types
     public void SetWeapon(WeaponType type)
     {
         if (combat == null) throw new System.Exception("Missing CombatBehaviour");
@@ -79,10 +112,11 @@ public class InventoryBehaviour : MonoBehaviour {
 
     void HandleInteractable(InteractableBehaviour interactable)
     {
-        if (interactable.CanBePickedUp() == false) { Debug.Log("Action pick-up failed"); return; }
+        if (interactable.CanBePickedUp(this) == false) { Debug.Log("Action pick-up failed"); return; }
 
-        // Handle pickup of Ammo
+        // Handle pickup
+        interactable.PickUp(this);
 
-        interactable.PickUp();
+        //Debug.Log(interactable.name);
     }
 }
