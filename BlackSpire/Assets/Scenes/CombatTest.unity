@@ -1125,7 +1125,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Use the keys 1, 2, 3 and 4
+  m_Text: 'Move using arow keys
+
+    Aim using [RMB]
+
+
+    Use the keys 1, 2, 3 and 4
 
     or keypad 6, 4, 8 and 2
 
