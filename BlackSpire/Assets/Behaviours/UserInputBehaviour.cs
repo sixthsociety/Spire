@@ -15,6 +15,7 @@ public class UserInputBehaviour : MonoBehaviour {
     public Vector3 inputWorldPosition { get; private set; }
     public bool isAiming { get; private set; }
     public bool isShooting { get; private set; }
+    
 
     // UNITY UPDATE CALLS
 
@@ -36,6 +37,19 @@ public class UserInputBehaviour : MonoBehaviour {
         }
 
         isShooting = Input.GetMouseButton(0);
+
+        bool weaponMedium = Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Alpha1);
+        bool weaponHeavy = Input.GetKeyDown(KeyCode.Keypad8) || Input.GetKeyDown(KeyCode.Alpha2);
+        bool weaponLight = Input.GetKeyDown(KeyCode.Keypad6) || Input.GetKeyDown(KeyCode.Alpha3);
+        bool weaponGrenade = Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha4);
+
+        if (inventory!=null)
+        {
+            if(weaponLight) inventory.SetWeapon(InventoryBehaviour.WeaponType.LightWeapon);
+            if(weaponMedium) inventory.SetWeapon(InventoryBehaviour.WeaponType.MediumWeapon);
+            if(weaponHeavy) inventory.SetWeapon(InventoryBehaviour.WeaponType.HeavyWeapon);
+            if(weaponGrenade) inventory.SetWeapon(InventoryBehaviour.WeaponType.Grenade);
+        }
     }
 
     // PUBLIC ACCESS

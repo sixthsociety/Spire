@@ -21,7 +21,8 @@ public class MovementBehaviour : MonoBehaviour {
 
     void OnEnable()
     {
-        rigidbody = this.GetComponent<Rigidbody>();
+        InitializeRigidbody();
+
         lookRotation = Quaternion.identity;
     }
 
@@ -64,5 +65,13 @@ public class MovementBehaviour : MonoBehaviour {
         direction.y = 0f;
         lookRotation = Quaternion.LookRotation(direction, Vector3.up);
         transform.rotation = lookRotation;
+    }
+
+    void InitializeRigidbody()
+    {
+        rigidbody = this.GetComponent<Rigidbody>();
+        if (rigidbody == null) rigidbody = this.gameObject.AddComponent<Rigidbody>();
+
+        rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
     }
 }
