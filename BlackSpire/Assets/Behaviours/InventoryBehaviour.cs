@@ -22,6 +22,12 @@ public class InventoryBehaviour : MonoBehaviour {
         SetWeapon(activeWeapon);
     }
 
+    void OnTriggerEnter(Collider collider)
+    {
+        InteractableBehaviour interactable = collider.GetComponent<InteractableBehaviour>();
+        if (interactable != null) HandleInteractable(interactable);
+    }
+
     // --- PUBLIC ---
 
     // Note : Currently implemented for player only
@@ -71,5 +77,12 @@ public class InventoryBehaviour : MonoBehaviour {
 
     // --- PRIVATE ---
 
+    void HandleInteractable(InteractableBehaviour interactable)
+    {
+        if (interactable.CanBePickedUp() == false) { Debug.Log("Action pick-up failed"); return; }
 
+        // Handle pickup of Ammo
+
+        interactable.PickUp();
+    }
 }
