@@ -6,9 +6,6 @@ using UnityEngine.UI;
 public class GUIBehaviour : MonoBehaviour {
     public InventoryBehaviour inventory;
 
-<<<<<<< HEAD
-
-=======
     public Text text_DisplayAmmo;
 
     // --- Unity updates
@@ -30,5 +27,4 @@ public class GUIBehaviour : MonoBehaviour {
     // --- Private methods
 
     void UnusedMethod () { }
->>>>>>> e8716ebc5191b6ebead7aafdc37a3cc35a579238
 }

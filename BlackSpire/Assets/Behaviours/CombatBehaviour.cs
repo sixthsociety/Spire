@@ -65,4 +65,15 @@ public class CombatBehaviour : MonoBehaviour
     {
         Debug.Log("Melee attacked");
     }
+
+    public delegate void ObjectiveEventHandler(object source, EventArgs e);
+    public event ObjectiveEventHandler E_OnKill;
+
+    public void OnKill()
+    {
+        if (E_OnKill != null)
+        {
+            E_OnKill(this, EventArgs.Empty);
+        }
+    }
 }
