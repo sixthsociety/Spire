@@ -233,10 +233,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26d93b55079198d4592e7ccd4eae226b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  pivot: {fileID: 2119453218}
-  smooth: 0.3
-  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &69696607
 GameObject:
   m_ObjectHideFlags: 0
@@ -1376,7 +1372,6 @@ GameObject:
   - component: {fileID: 1253297493}
   - component: {fileID: 1253297492}
   - component: {fileID: 1253297491}
-  - component: {fileID: 1253297490}
   - component: {fileID: 1253297489}
   m_Layer: 0
   m_Name: Player
@@ -1388,32 +1383,20 @@ GameObject:
 --- !u!114 &1253297489
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114453103373075130, guid: d874e336e17b6b84fbbcddb3468b6fa1,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1253297488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb3e66d5b9a3846b3ad634834e8a16db, type: 3}
+  m_Script: {fileID: 11500000, guid: 55f244cc02bb29d429bd8fbfde4c0ff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMoveSpeed: 0.08
-  playerAimMoveSpeed: 0.04
-  mainCam: {fileID: 0}
-  canMove: 1
---- !u!114 &1253297490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114046447640066926, guid: d874e336e17b6b84fbbcddb3468b6fa1,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1253297488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48993147b74e2450a81783ea38d2cce9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
+  allObjectives:
+  - {fileID: 11400000, guid: e8bb4d09a185f43cd86a72096a32ae76, type: 2}
+  currentObjectives:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!136 &1253297491
 CapsuleCollider:
   m_ObjectHideFlags: 0

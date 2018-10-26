@@ -299,8 +299,6 @@ GameObject:
   - component: {fileID: 4983163841577054}
   - component: {fileID: 54176285886464158}
   - component: {fileID: 136563188935422732}
-  - component: {fileID: 114046447640066926}
-  - component: {fileID: 114453103373075130}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1342,19 +1340,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114046447640066926
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1422196556739986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48993147b74e2450a81783ea38d2cce9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  toCall: {fileID: 0}
 --- !u!114 &114306879205564758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1393,21 +1378,6 @@ MonoBehaviour:
   damage: 10
   range: 20
   firePoint: {fileID: 4220220506562888}
---- !u!114 &114453103373075130
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1422196556739986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb3e66d5b9a3846b3ad634834e8a16db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerMoveSpeed: 0.08
-  playerAimMoveSpeed: 0.04
-  mainCam: {fileID: 0}
-  canMove: 1
 --- !u!114 &114591025581322294
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -9,7 +9,7 @@ public static class SaveLoadManager {
 
     public const string playerSaveFile = "/player.sav";
 
-    public static void SavePlayer (MissionBehaviour player)
+    public static void SavePlayer (ObjectiveBehaviour player)
     {
         BinaryFormatter binaryFormatter = new BinaryFormatter();
         FileStream fileStream = new FileStream(Application.persistentDataPath + playerSaveFile, FileMode.Create);
@@ -37,7 +37,7 @@ public class PlayerData
 {
     public int[] level; // index 0 is level index 1 is exp 
 
-    public PlayerData (MissionBehaviour player) 
+    public PlayerData (ObjectiveBehaviour player) 
     {
         level = new int[2] { 0, 0};
     }
