@@ -22,9 +22,10 @@ public class CombatBehaviour : MonoBehaviour {
 	}
 	
 
-	public void SetAttack (int baseDamage, float attackTime) {
+	public void SetAttack (int baseDamage, float attackTime, AttackType type) {
         stats.baseDamage = baseDamage;
         stats.attackTime = attackTime;
+        stats.type = type;
 	}
 
     public void Attack()

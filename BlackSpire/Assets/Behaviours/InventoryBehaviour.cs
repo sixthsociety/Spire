@@ -38,6 +38,12 @@ public class InventoryBehaviour : MonoBehaviour {
 
     // --- PUBLIC ---
 
+    public CombatBehaviour GetActiveCombat()
+    {
+        // should return CombatBehaviour based on the active combat type
+        return combat;
+    }
+
     public void AddAmmoClips(int clipCount)
     {
         switch (activeWeapon)
@@ -74,26 +80,26 @@ public class InventoryBehaviour : MonoBehaviour {
         {
             case WeaponType.LightWeapon:
                 // Light weapons are when you run out of ammo or need to carry an object, and they provide no decrease to speed when aiming.
-                combat.SetAttack(2, 0.05f);
+                combat.SetAttack(2, 0.05f, CombatBehaviour.AttackType.Bullets);
                 if (m_LogInEditor) Debug.Log("Weapon was set : LightWeapon");
                 break;
 
             case WeaponType.MediumWeapon:
                 // Medium weapons are mobile weapons you can move and fire(but movement speed when aiming is slowed)
-                combat.SetAttack(20, 0.2f);
+                combat.SetAttack(20, 0.2f, CombatBehaviour.AttackType.Bullets);
                 if (m_LogInEditor) Debug.Log("Weapon was set : MediumWeapon");
                 break;
 
             case WeaponType.HeavyWeapon:
                 // Heavy weapons require you to stand in position and shoot(rocket launchers, mortars, miniguns etc)
-                combat.SetAttack(50, 1f);
+                combat.SetAttack(50, 1f, CombatBehaviour.AttackType.Missile);
                 if (m_LogInEditor) Debug.Log("Weapon was set : HeavyWeapon");
                 break;
 
             case WeaponType.Grenade:
                 // Grenades do not reduce speed but holding them past(as an example) 4 seconds causes them to detonate and damage the player.
                 // (these also can be clocked back for throws without a hindrance to speed)
-                combat.SetAttack(100,2f);
+                combat.SetAttack(100,2f, CombatBehaviour.AttackType.Grenade);
                 if (m_LogInEditor) Debug.Log("Weapon was set : Grenade");
                 break;
 
