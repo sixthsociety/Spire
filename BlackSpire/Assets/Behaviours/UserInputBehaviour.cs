@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class UserInputBehaviour : MonoBehaviour {
     public InventoryBehaviour inventory;
-    public CombatBehaviour combat;
     public MovementBehaviour movement;
 
     public Camera inputCamera { get; set; }
@@ -45,8 +44,8 @@ public class UserInputBehaviour : MonoBehaviour {
         }
 
         isShooting = Input.GetMouseButton(0);
-
-
+        CombatBehaviour combat = inventory.GetActiveCombat();
+        if(isShooting) combat.Attack();
 
         bool weaponLight = Input.GetKeyDown(KeyCode.Keypad6) || Input.GetKeyDown(KeyCode.Alpha1);
         bool weaponMedium = Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Alpha2);

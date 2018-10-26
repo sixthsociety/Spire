@@ -23,12 +23,17 @@ public class CombatBehaviour : MonoBehaviour
 
     }
 
-
     public void SetAttack(int baseDamage, float attackTime)
     {
         stats.baseDamage = baseDamage;
         stats.attackTime = attackTime;
     }
+
+	public void SetAttack (int baseDamage, float attackTime, AttackType type) {
+        stats.baseDamage = baseDamage;
+        stats.attackTime = attackTime;
+        stats.type = type;
+	}
 
     public void Attack()
     {
@@ -59,16 +64,5 @@ public class CombatBehaviour : MonoBehaviour
     void Melee () 
     {
         Debug.Log("Melee attacked");
-    }
-
-    public delegate void ObjectiveEventHandler(object source, EventArgs e);
-    public event ObjectiveEventHandler E_OnKill;
-
-    public void OnKill () 
-    {
-        if (E_OnKill != null) 
-        {
-            E_OnKill(this, EventArgs.Empty);
-        }
     }
 }

@@ -454,7 +454,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &114032131985279312
 MonoBehaviour:
@@ -510,6 +510,26 @@ MonoBehaviour:
   activeWeapon: 1
   m_LogInEditor: 0
   combat: {fileID: 114032131985279312}
+  lightAmmo:
+    count: 10
+    clipCount: 5
+    clipSize: 10
+    maxClips: 10
+  mediumAmmo:
+    count: 100
+    clipCount: 2
+    clipSize: 100
+    maxClips: 10
+  heavyAmmo:
+    count: 2
+    clipCount: 5
+    clipSize: 2
+    maxClips: 10
+  grenadeAmmo:
+    count: 1
+    clipCount: 3
+    clipSize: 1
+    maxClips: 10
 --- !u!114 &114749457894496846
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -521,7 +541,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e0f782174b43142ade83ace714c2b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_DefaultSpeed: 1
 --- !u!114 &114772295096649208
 MonoBehaviour:
   m_ObjectHideFlags: 1

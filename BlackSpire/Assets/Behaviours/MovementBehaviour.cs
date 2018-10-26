@@ -22,7 +22,8 @@ public class MovementBehaviour : MonoBehaviour {
     public Vector3 tagrgetLookDirection { get; private set; }
 
     new private Rigidbody rigidbody;
-    
+    public CapsuleCollider capsuleCollider;
+
     // UNITY UPDATE CALLS
 
     void OnEnable()
@@ -31,7 +32,8 @@ public class MovementBehaviour : MonoBehaviour {
 
         speed = m_DefaultSpeed;
 
-        lookRotation = Quaternion.identity;
+        tagrgetLookDirection = transform.forward; //Vector3.forward;
+        lookRotation = transform.rotation; //Quaternion.identity;
     }
 
     void FixedUpdate()
@@ -82,9 +84,10 @@ public class MovementBehaviour : MonoBehaviour {
 
     void Look(Vector3 direction, float deltaTime)
     {
+        direction.y = 0f;
+
         if (direction.sqrMagnitude > Mathf.Epsilon)
         {
-            direction.y = 0f;
             tagrgetLookDirection = direction;
         }
 
@@ -99,5 +102,23 @@ public class MovementBehaviour : MonoBehaviour {
         if (rigidbody == null) rigidbody = this.gameObject.AddComponent<Rigidbody>();
 
         rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+    }
+
+    bool CanWarp(Vector3 position)
+    {
+        //Debug.Log("Check area");
+        if (capsuleCollider == null) throw new System.Exception("No capsule attached");
+
+        Collider[] colliders =
+            Physics.OverlapCapsule(position, position + Vector3.up * capsuleCollider.height,
+            capsuleCollider.radius, -1, QueryTriggerInteraction.Ignore);
+
+        return colliders.Length == 0;
+    }
+
+    void Warp(Vector3 position)
+    {
+        transform.position = position;
+        Debug.Log("Player warped");
     }
 }
