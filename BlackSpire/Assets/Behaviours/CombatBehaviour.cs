@@ -50,7 +50,7 @@ public class CombatBehaviour : MonoBehaviour
     {
         Debug.Log("Shoot B");
 
-        //tmp 
+        // TODO add kill tracking and only call OnKill() when player kills something
         OnKill();
     }
     void LaunchMissile()

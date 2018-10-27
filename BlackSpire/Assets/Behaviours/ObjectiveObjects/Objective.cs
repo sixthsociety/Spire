@@ -2,10 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/* 
+
+    The major objectives are assigned by the Level and do not save/aren't playable in other levels
+    The minor objectives can be played in all level and are saved between games
+
+*/
+
 [CreateAssetMenu(fileName ="Objective", menuName ="Objective", order =1)]
 public class Objective : ScriptableObject 
 {
-    public enum ObjectiveType { Level, OnGoing } // whether that objective is saved when the player leaves the level
+    public enum ObjectiveType { Major, Minor } // whether that objective is saved when the player leaves the level
 
     public string objectiveName = "def";
     public string description = "def";
@@ -14,61 +21,9 @@ public class Objective : ScriptableObject
 
     public Quest[] quests;
 
-    #region Type Checks
-
-    public bool hasCombat () 
-    {
-        for (int i = 0; i < quests.Length; i++)
-        {
-            if (quests[i].questType == Quest.QuestType.Kill) 
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    public bool hasCollect () 
-    {
-        for (int i = 0; i < quests.Length; i++)
-        {
-            if (quests[i].questType == Quest.QuestType.Kill)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    public bool hasVisit()
-    {
-        for (int i = 0; i < quests.Length; i++)
-        {
-            if (quests[i].questType == Quest.QuestType.Kill)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    public bool hasDefeat()
-    {
-        for (int i = 0; i < quests.Length; i++)
-        {
-            if (quests[i].questType == Quest.QuestType.Kill)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    #endregion
+    // standard rewards
+    public int exp;
+    public int currency;
 }
 
 [CreateAssetMenu(fileName ="Quest", menuName ="Quest", order =2)]
@@ -79,4 +34,19 @@ public class Quest : ScriptableObject
     public string questDescription;
 
     public QuestType questType;
+
+    public int totalKills;
+    public int kills { get; private set; }
+
+    public void IncrementKills() 
+    {
+        kills++;
+    }
+
+    public bool isCompleted { get; private set; }
+
+    public void Complete () 
+    {
+        isCompleted = true;
+    }
 }
