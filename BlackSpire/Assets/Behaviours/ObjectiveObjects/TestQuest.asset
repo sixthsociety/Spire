@@ -13,3 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Quest
   questDescription: Kill 10 enemies.
   questType: 0
+  totalKills: 1

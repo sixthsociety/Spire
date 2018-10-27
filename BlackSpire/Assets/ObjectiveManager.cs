@@ -14,7 +14,11 @@ public class ObjectiveManager : MonoBehaviour {
 
     private void Start()
     {
-        SetObjective(tmpObjective);
+        Objective[] loadedObjectives = SaveLoadManager.LoadObjectives();
+        for (int i = 0; i < minorObjectives.Length; i++)
+        {
+            SetObjective(loadedObjectives[i]);
+        }
     }
 
     //set objective is called when player faces new major objective.  This can be called by a level that has a set objective.
@@ -72,5 +76,15 @@ public class ObjectiveManager : MonoBehaviour {
                 }
                 break;
         }
+    }
+
+    private void OnApplicationQuit()
+    {
+        Objective[] toSave = new Objective[3];
+        for (int i = 0; i < minorObjectives.Length; i++)
+        {
+            toSave[i] = minorObjectives[i].m_ThisObjective;
+        }
+        SaveLoadManager.SaveObjectives(toSave);
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -292,7 +292,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 1158213954}
-  combat: {fileID: 1158213956}
   movement: {fileID: 1158213953}
 --- !u!114 &154238581
 MonoBehaviour:
@@ -305,8 +304,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 313be75059ffc7b4bab6875302b2d168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 1158213954}
-  text_DisplayAmmo: {fileID: 677688790}
+  inventory: {fileID: 0}
+  text_DisplayAmmo: {fileID: 0}
 --- !u!1 &265918485
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,7 +338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsPickup: 1
   m_CanRespawn: 0
-  m_EditorMaterial: {fileID: 265918488}
+  m_EditorMaterial: {fileID: 0}
   rewardType: 0
   rewardQuantity: 0
   collider: {fileID: 265918487}
@@ -1425,12 +1424,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 53101504}
   m_Script: {fileID: 11500000, guid: 21f09212394cf884bb1d0e1a3bf41dcd, type: 3}
---- !u!114 &1158213956 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114032131985279312, guid: 2d773d27e6f73d347adb8d5b49270ace,
-    type: 2}
-  m_PrefabInternal: {fileID: 53101504}
-  m_Script: {fileID: 11500000, guid: 383880a990a71fe41aa78853250343df, type: 3}
 --- !u!1 &1246567795
 GameObject:
   m_ObjectHideFlags: 0
