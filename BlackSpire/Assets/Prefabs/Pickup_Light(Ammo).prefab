@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4744096880612292}
   - component: {fileID: 135635672119985606}
   - component: {fileID: 114930888366473084}
+  - component: {fileID: 114023000367591356}
   m_Layer: 0
   m_Name: Pickup_Light(Ammo)
   m_TagString: Untagged
@@ -114,6 +115,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1375833092421358}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114023000367591356
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1191841246019470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb6d7a79d3bb99f488f2ac7e64c084d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTracked: 0
 --- !u!114 &114930888366473084
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -128,6 +141,7 @@ MonoBehaviour:
   m_IsPickup: 1
   m_CanRespawn: 0
   m_EditorMaterial: {fileID: 0}
+  m_Spawnable: {fileID: 114023000367591356}
   rewardType: 1
   rewardQuantity: 25
   collider: {fileID: 135635672119985606}

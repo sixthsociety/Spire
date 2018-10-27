@@ -11,11 +11,16 @@ public class SpawnBehaviour : MonoBehaviour {
     GameObject[] objectPool;
     int poolIndex = 0;
 
+    public bool respawner;
+    float respawnTime;
+
     // --- UNITY UPDATES ---
 
     void OnEnable () {
         if (m_PoolSize > 0)
             if (objectPool == null || objectPool.Length != m_PoolSize) InitializePool();
+
+        //if(respawner)
     }
 
     // --- PUBLIC ---

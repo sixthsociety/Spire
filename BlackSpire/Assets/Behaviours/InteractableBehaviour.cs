@@ -8,6 +8,7 @@ public class InteractableBehaviour : MonoBehaviour {
     [SerializeField] bool m_IsPickup = true;
     [SerializeField] bool m_CanRespawn = false;
     [SerializeField] Renderer m_EditorMaterial;
+    [SerializeField] SpawnableBehaviour m_Spawnable;
 
     public enum InteractionRewardType { None, Light, Medium, Heavy, Grenade};
     public InteractionRewardType rewardType = InteractionRewardType.None;
@@ -42,18 +43,9 @@ public class InteractableBehaviour : MonoBehaviour {
         {
             // Add ammo of type to inventory
             // inventory
+            Debug.Log(inventory.name + " <---");
         }
 
-        //Debug.Log(inventory.name);
-
-        if (m_CanRespawn)
-        {
-            // A game object can NOT turn itself back on once deactivated
-            // (Unity updates are not called)
-            // Requires SpawnBehaviour to re-enable
-            this.gameObject.SetActive(false);
-        }
-        else
-            Destroy(this.gameObject);
+        if(m_Spawnable!=null) m_Spawnable.Despawn();
     }
 }

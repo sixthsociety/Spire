@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 114749457894496846}
   - component: {fileID: 114520791652244298}
   - component: {fileID: 114299478744426640}
+  - component: {fileID: 114378889271703480}
   m_Layer: 0
   m_Name: CharacterTest2
   m_TagString: Untagged
@@ -467,6 +468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 383880a990a71fe41aa78853250343df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnOffset: {x: 0, y: 1, z: 0.25}
 --- !u!114 &114299478744426640
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -483,6 +485,18 @@ MonoBehaviour:
   m_Model_Medium: {fileID: 1474403639354122}
   m_Model_Heavy: {fileID: 1395205580323984}
   m_Model_Grenade: {fileID: 1618589632122338}
+--- !u!114 &114378889271703480
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1606994216319062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb6d7a79d3bb99f488f2ac7e64c084d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTracked: 0
 --- !u!114 &114520791652244298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -496,6 +510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DefaultPrefab: {fileID: 0}
   m_PoolSize: 0
+  respawner: 0
 --- !u!114 &114621790945080060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -541,6 +556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e0f782174b43142ade83ace714c2b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  capsuleCollider: {fileID: 0}
 --- !u!114 &114772295096649208
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class CombatBehaviour : MonoBehaviour
 {
+    //ray, impact, range
     public enum AttackType { Bullets, Missile, Grenade, Melee }
 
     AttackStats stats;
@@ -46,12 +47,24 @@ public class CombatBehaviour : MonoBehaviour
         }
     }
 
+    float bulletRange = Mathf.Infinity;
+    public Vector3 spawnOffset;
     void FireBullets()
     {
         Debug.Log("Shoot B");
 
+        Vector3 p = this.transform.TransformPoint(spawnOffset);
+
+        RaycastHit hitInfo;
+        bool isHit = Physics.Raycast(p, transform.forward, out hitInfo, bulletRange, -1, QueryTriggerInteraction.Ignore);
+        if (isHit)
+        {
+            HealthBehaviour health = hitInfo.collider.GetComponent<HealthBehaviour>();
+            if (health != null) Damage(health);
+        }
+
         // TODO add kill tracking and only call OnKill() when player kills something
-        OnKill();
+        //OnKill();
     }
     void LaunchMissile()
     {
@@ -64,6 +77,11 @@ public class CombatBehaviour : MonoBehaviour
     void Melee () 
     {
         Debug.Log("Melee attacked");
+    }
+
+    void Damage(HealthBehaviour healthBehaviour)
+    {
+        healthBehaviour.TakeDamage(1);
     }
 
     public delegate void ObjectiveEventHandler(object source, EventArgs e);

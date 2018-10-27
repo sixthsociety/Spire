@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4868753416299522}
   - component: {fileID: 135335054305064064}
   - component: {fileID: 114701999389394540}
+  - component: {fileID: 114823267824467868}
   m_Layer: 0
   m_Name: Pickup_Medium(Ammo)
   m_TagString: Untagged
@@ -128,9 +129,22 @@ MonoBehaviour:
   m_IsPickup: 1
   m_CanRespawn: 0
   m_EditorMaterial: {fileID: 0}
+  m_Spawnable: {fileID: 114823267824467868}
   rewardType: 2
   rewardQuantity: 10
   collider: {fileID: 135335054305064064}
+--- !u!114 &114823267824467868
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1260111637136020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb6d7a79d3bb99f488f2ac7e64c084d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTracked: 0
 --- !u!135 &135335054305064064
 SphereCollider:
   m_ObjectHideFlags: 1
