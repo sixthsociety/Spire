@@ -78,8 +78,12 @@ GameObject:
   - component: {fileID: 114749457894496846}
   - component: {fileID: 114520791652244298}
   - component: {fileID: 114299478744426640}
+<<<<<<< HEAD
   - component: {fileID: 114215874136461832}
   - component: {fileID: 114927997397709066}
+=======
+  - component: {fileID: 114378889271703480}
+>>>>>>> eb532ce88d30c68cb38693e89841ab7a2b7ca529
   m_Layer: 0
   m_Name: CharacterTest2
   m_TagString: Player
@@ -469,6 +473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 383880a990a71fe41aa78853250343df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
 --- !u!114 &114215874136461832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -483,6 +488,9 @@ MonoBehaviour:
   objectivePrefab: {fileID: 1631035556056364, guid: 66163decf9dcf499f8072cc375892d45,
     type: 2}
   tmpObjective: {fileID: 0}
+=======
+  spawnOffset: {x: 0, y: 1, z: 0.25}
+>>>>>>> eb532ce88d30c68cb38693e89841ab7a2b7ca529
 --- !u!114 &114299478744426640
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -499,6 +507,18 @@ MonoBehaviour:
   m_Model_Medium: {fileID: 1474403639354122}
   m_Model_Heavy: {fileID: 1395205580323984}
   m_Model_Grenade: {fileID: 1618589632122338}
+--- !u!114 &114378889271703480
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1606994216319062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb6d7a79d3bb99f488f2ac7e64c084d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTracked: 0
 --- !u!114 &114520791652244298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -512,6 +532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DefaultPrefab: {fileID: 0}
   m_PoolSize: 0
+  respawner: 0
 --- !u!114 &114621790945080060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -557,7 +578,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e0f782174b43142ade83ace714c2b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   capsuleCollider: {fileID: 136570101990108132}
+=======
+  capsuleCollider: {fileID: 0}
+>>>>>>> eb532ce88d30c68cb38693e89841ab7a2b7ca529
 --- !u!114 &114772295096649208
 MonoBehaviour:
   m_ObjectHideFlags: 1

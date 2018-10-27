@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f008a82126c9fe44b8c0ec0f2c8b3bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TerrainMesh: {fileID: 0}
+  TerrainMesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
   TerrainSize: 100
   HeightPerlinRes: 4
   HeightMap:
